@@ -1,0 +1,546 @@
+{
+  "sot_id": "ZMT-DEFAULTS-0001",
+  "version": "1.0.0",
+  "updated": "2025-10-03",
+  "schema_version": "1.0",
+  "description": "Zero-Miss-Tap (ZMT) Framework: Source of Truth for touch target accessibility and ergonomics across all surfaces",
+  "normative_profile": {
+    "wcag_level": "AA",
+    "wcag_versions": ["2.1", "2.2"],
+    "contrast_minimum": {
+      "text_small": 4.5,
+      "text_large": 3.0,
+      "ui_components": 3.0,
+      "focus_indicator": 3.0
+    },
+    "reflow": {
+      "min_width_px": 320,
+      "max_line_length_chars": 80,
+      "zoom_support_percent": 200
+    },
+    "flashing_limits": {
+      "max_flashes_per_second": 3,
+      "red_flash_threshold": 0.8
+    }
+  },
+  "universal_defaults": {
+    "description": "Fallback values applied when no surface-specific override exists",
+    "tap_targets": {
+      "min_size_px": 44,
+      "recommended_size_px": 48,
+      "unit": "px"
+    },
+    "separation": {
+      "comfortable_px": 8,
+      "compact_px": 6,
+      "ultra_compact_px": 4,
+      "ultra_compact_requires_hitslop_px": 4
+    },
+    "typography": {
+      "min_font_size_px": 16,
+      "min_line_height": 1.5,
+      "max_line_length_chars": 80
+    },
+    "gestures": {
+      "tap_debounce_ms": [120, 160],
+      "double_tap_window_ms": [250, 300],
+      "long_press_threshold_ms": [300, 500],
+      "swipe_velocity_min_px_per_ms": 0.3
+    }
+  },
+  "surfaces": {
+    "phone": {
+      "display_type": "touch",
+      "input_methods": ["touch", "voice"],
+      "tap_targets": {
+        "min_size_px": 44,
+        "recommended_size_px": 48,
+        "unit": "px",
+        "notes": "WCAG 2.2 SC 2.5.8 Level AAA, iOS HIG, Material Design 3"
+      },
+      "separation": {
+        "comfortable_px": 8,
+        "compact_px": 6,
+        "ultra_compact_px": 4,
+        "ultra_compact_requires_hitslop_px": 4
+      },
+      "typography": {
+        "min_font_size_px": 16,
+        "min_line_height": 1.5,
+        "max_line_length_chars": 80
+      },
+      "thumb_zones": {
+        "easy_reach_percent": 50,
+        "description": "Bottom 50% of screen; top corners difficult for one-handed use"
+      },
+      "gestures": {
+        "tap_debounce_ms": [120, 160],
+        "double_tap_window_ms": [250, 300],
+        "long_press_threshold_ms": [300, 500],
+        "swipe_velocity_min_px_per_ms": 0.3
+      },
+      "density_modes": {
+        "comfortable": {
+          "tap_target_px": 48,
+          "separation_px": 8
+        },
+        "compact": {
+          "tap_target_px": 44,
+          "separation_px": 6
+        },
+        "ultra_compact_guarded": {
+          "tap_target_px": 44,
+          "separation_px": 4,
+          "hitslop_required_px": 4,
+          "notes": "Visual spacing reduced; compensated by invisible hit-slop"
+        }
+      },
+      "enforcement": {
+        "tap_safety_score_min": 90,
+        "miss_tap_rate_max": 0.02,
+        "violations_blocker": 0,
+        "violations_alta": 0
+      }
+    },
+    "tablet": {
+      "display_type": "touch",
+      "input_methods": ["touch", "stylus", "keyboard"],
+      "tap_targets": {
+        "min_size_px": 44,
+        "recommended_size_px": 48,
+        "unit": "px",
+        "notes": "Same as phone; check landscape/portrait reflow"
+      },
+      "separation": {
+        "comfortable_px": 8,
+        "compact_px": 6,
+        "ultra_compact_px": 4,
+        "ultra_compact_requires_hitslop_px": 4
+      },
+      "typography": {
+        "min_font_size_px": 16,
+        "min_line_height": 1.5,
+        "max_line_length_chars": 80
+      },
+      "thumb_zones": {
+        "easy_reach_percent": 60,
+        "description": "Edges for one-handed grip; center for two-handed"
+      },
+      "gestures": {
+        "tap_debounce_ms": [120, 160],
+        "double_tap_window_ms": [250, 300],
+        "long_press_threshold_ms": [300, 500],
+        "swipe_velocity_min_px_per_ms": 0.3
+      },
+      "density_modes": {
+        "comfortable": {
+          "tap_target_px": 48,
+          "separation_px": 8
+        },
+        "compact": {
+          "tap_target_px": 44,
+          "separation_px": 6
+        },
+        "ultra_compact_guarded": {
+          "tap_target_px": 44,
+          "separation_px": 4,
+          "hitslop_required_px": 4
+        }
+      },
+      "enforcement": {
+        "tap_safety_score_min": 90,
+        "miss_tap_rate_max": 0.02,
+        "violations_blocker": 0,
+        "violations_alta": 0
+      }
+    },
+    "desktop": {
+      "display_type": "pointer",
+      "input_methods": ["mouse", "trackpad", "keyboard"],
+      "tap_targets": {
+        "min_size_px": 24,
+        "recommended_size_px": 32,
+        "unit": "px",
+        "notes": "Smaller due to mouse/trackpad precision; icons, buttons, close controls"
+      },
+      "separation": {
+        "comfortable_px": 8,
+        "compact_px": 6,
+        "ultra_compact_px": 4,
+        "ultra_compact_requires_hitslop_px": 4
+      },
+      "typography": {
+        "min_font_size_px": 14,
+        "min_line_height": 1.5,
+        "max_line_length_chars": 80
+      },
+      "critical_zones": {
+        "description": "Top menu bar, sidebars, modal dialogs"
+      },
+      "gestures": {
+        "click_debounce_ms": [100, 150],
+        "double_click_window_ms": [250, 300]
+      },
+      "density_modes": {
+        "comfortable": {
+          "tap_target_px": 32,
+          "separation_px": 8
+        },
+        "compact": {
+          "tap_target_px": 24,
+          "separation_px": 6
+        }
+      },
+      "enforcement": {
+        "tap_safety_score_min": 85,
+        "miss_tap_rate_max": 0.01,
+        "violations_blocker": 0,
+        "violations_alta": 0
+      }
+    },
+    "watch": {
+      "display_type": "touch",
+      "input_methods": ["touch", "digital_crown", "side_buttons"],
+      "tap_targets": {
+        "min_size_px": 40,
+        "recommended_size_px": 44,
+        "unit": "px",
+        "notes": "Limited screen space; touch targets must be large relative to display"
+      },
+      "separation": {
+        "comfortable_px": 6,
+        "compact_px": 4,
+        "ultra_compact_px": null,
+        "notes": "Screen too small for ultra-compact mode"
+      },
+      "typography": {
+        "min_font_size_px": 14,
+        "min_line_height": 1.4,
+        "max_line_length_chars": 40
+      },
+      "critical_zones": {
+        "description": "Full screen (small area; all targets critical)"
+      },
+      "gestures": {
+        "tap_debounce_ms": [120, 160],
+        "long_press_threshold_ms": [400, 600]
+      },
+      "density_modes": {
+        "comfortable": {
+          "tap_target_px": 44,
+          "separation_px": 6
+        },
+        "compact": {
+          "tap_target_px": 40,
+          "separation_px": 4
+        }
+      },
+      "enforcement": {
+        "tap_safety_score_min": 85,
+        "miss_tap_rate_max": 0.03,
+        "violations_blocker": 0,
+        "violations_alta": 0
+      }
+    },
+    "glasses_microdisplay": {
+      "display_type": "microdisplay",
+      "input_methods": ["gaze", "pinch", "voice", "head_gesture"],
+      "tap_targets": {
+        "min_angular_degrees": 0.5,
+        "recommended_angular_degrees": 0.8,
+        "unit": "degrees",
+        "notes": "Angular size ensures consistent reachability; physical pixels vary with distance"
+      },
+      "separation": {
+        "comfortable_angular_degrees": 0.3,
+        "compact_angular_degrees": 0.2,
+        "ultra_compact_angular_degrees": null,
+        "notes": "Gaze precision is limited; avoid ultra-compact"
+      },
+      "typography": {
+        "min_font_size_angular_degrees": 0.3,
+        "min_line_height": 1.4,
+        "max_line_length_chars": 60
+      },
+      "critical_zones": {
+        "fov_central_degrees": 30,
+        "description": "Central 30° FOV; peripheral UI difficult to target"
+      },
+      "gestures": {
+        "gaze_dwell_ms": [400, 600],
+        "pinch_debounce_ms": [120, 160]
+      },
+      "density_modes": {
+        "comfortable": {
+          "tap_target_angular_degrees": 0.8,
+          "separation_angular_degrees": 0.3
+        },
+        "compact": {
+          "tap_target_angular_degrees": 0.5,
+          "separation_angular_degrees": 0.2
+        }
+      },
+      "enforcement": {
+        "tap_safety_score_min": 80,
+        "miss_tap_rate_max": 0.02,
+        "violations_blocker": 0,
+        "violations_alta": 0
+      }
+    },
+    "tv": {
+      "display_type": "large_screen",
+      "input_methods": ["remote_dpad", "voice", "game_controller"],
+      "tap_targets": {
+        "min_size_px": 48,
+        "recommended_size_px": 56,
+        "unit": "px",
+        "notes": "D-pad navigation; must be visible and reachable via remote at 10-foot distance"
+      },
+      "separation": {
+        "comfortable_px": 12,
+        "compact_px": 8,
+        "ultra_compact_px": null,
+        "notes": "10-foot UI; buttons must be clearly distinct"
+      },
+      "typography": {
+        "min_font_size_px": 24,
+        "min_line_height": 1.5,
+        "max_line_length_chars": 60
+      },
+      "critical_zones": {
+        "center_percent": 60,
+        "description": "Center 60% of screen; edges difficult to reach with D-pad"
+      },
+      "gestures": {
+        "dpad_debounce_ms": [150, 200],
+        "select_long_press_ms": [500, 700]
+      },
+      "density_modes": {
+        "comfortable": {
+          "tap_target_px": 56,
+          "separation_px": 12
+        },
+        "compact": {
+          "tap_target_px": 48,
+          "separation_px": 8
+        }
+      },
+      "enforcement": {
+        "tap_safety_score_min": 85,
+        "miss_tap_rate_max": 0.01,
+        "violations_blocker": 0,
+        "violations_alta": 0
+      }
+    },
+    "ar_vr": {
+      "display_type": "spatial",
+      "input_methods": ["hand_tracking", "ray_cast", "gaze", "controller"],
+      "tap_targets": {
+        "min_angular_degrees": 1.2,
+        "recommended_angular_degrees": 1.5,
+        "unit": "degrees",
+        "notes": "Angular size ensures consistent visual and motor difficulty; hand tracking jitter requires larger targets"
+      },
+      "separation": {
+        "comfortable_angular_degrees": 0.5,
+        "compact_angular_degrees": 0.3,
+        "ultra_compact_angular_degrees": null,
+        "notes": "Hand tracking jitter requires more space; avoid ultra-compact"
+      },
+      "typography": {
+        "min_font_size_angular_degrees": 0.4,
+        "min_line_height": 1.5,
+        "max_line_length_chars": 60
+      },
+      "critical_zones": {
+        "reach_distance_m": [0.5, 1.5],
+        "description": "Arm's reach (0.5-1.5m); avoid extremes (floor, ceiling, behind user)"
+      },
+      "gestures": {
+        "pinch_debounce_ms": [120, 160],
+        "ray_cast_dwell_ms": [300, 500],
+        "hand_gesture_timeout_ms": [500, 700]
+      },
+      "density_modes": {
+        "comfortable": {
+          "tap_target_angular_degrees": 1.5,
+          "separation_angular_degrees": 0.5
+        },
+        "compact": {
+          "tap_target_angular_degrees": 1.2,
+          "separation_angular_degrees": 0.3
+        }
+      },
+      "enforcement": {
+        "tap_safety_score_min": 80,
+        "miss_tap_rate_max": 0.02,
+        "violations_blocker": 0,
+        "violations_alta": 0
+      }
+    }
+  },
+  "enforcement_config": {
+    "modes": {
+      "strict": {
+        "description": "Fail CI if any violation with severity >= Alta",
+        "fail_on_blocker": true,
+        "fail_on_alta": true,
+        "fail_on_media": false,
+        "fail_on_baja": false
+      },
+      "audit": {
+        "description": "Report violations as warnings; do not fail CI",
+        "fail_on_blocker": false,
+        "fail_on_alta": false,
+        "fail_on_media": false,
+        "fail_on_baja": false
+      },
+      "progressive": {
+        "description": "Fail only on blockers; warn on Alta+",
+        "fail_on_blocker": true,
+        "fail_on_alta": false,
+        "fail_on_media": false,
+        "fail_on_baja": false
+      }
+    },
+    "ci_gates": {
+      "phone": {
+        "tap_safety_score_min": 90,
+        "miss_tap_rate_max": 0.02,
+        "runtime_overhead_p95_ms": 10,
+        "violations_blocker_max": 0,
+        "violations_alta_max": 0
+      },
+      "tablet": {
+        "tap_safety_score_min": 90,
+        "miss_tap_rate_max": 0.02,
+        "runtime_overhead_p95_ms": 10,
+        "violations_blocker_max": 0,
+        "violations_alta_max": 0
+      },
+      "desktop": {
+        "tap_safety_score_min": 85,
+        "miss_tap_rate_max": 0.01,
+        "runtime_overhead_p95_ms": 10,
+        "violations_blocker_max": 0,
+        "violations_alta_max": 0
+      },
+      "watch": {
+        "tap_safety_score_min": 85,
+        "miss_tap_rate_max": 0.03,
+        "runtime_overhead_p95_ms": 10,
+        "violations_blocker_max": 0,
+        "violations_alta_max": 0
+      },
+      "glasses_microdisplay": {
+        "tap_safety_score_min": 80,
+        "miss_tap_rate_max": 0.02,
+        "runtime_overhead_p95_ms": 10,
+        "violations_blocker_max": 0,
+        "violations_alta_max": 0
+      },
+      "tv": {
+        "tap_safety_score_min": 85,
+        "miss_tap_rate_max": 0.01,
+        "runtime_overhead_p95_ms": 10,
+        "violations_blocker_max": 0,
+        "violations_alta_max": 0
+      },
+      "ar_vr": {
+        "tap_safety_score_min": 80,
+        "miss_tap_rate_max": 0.02,
+        "runtime_overhead_p95_ms": 10,
+        "violations_blocker_max": 0,
+        "violations_alta_max": 0
+      }
+    }
+  },
+  "measurement_events": {
+    "zmt_audit_run": {
+      "fields": ["surface", "tss", "mtr", "violations_by_severity", "runtime_ms", "timestamp"],
+      "opt_in": true
+    },
+    "zmt_violation": {
+      "fields": ["axiom", "surface", "component", "severity", "value_expected", "value_actual"],
+      "opt_in": true
+    },
+    "zmt_waiver_created": {
+      "fields": ["adr_id", "surface", "duration_days", "reason", "approvals"],
+      "opt_in": true
+    }
+  },
+  "measurement_budgets": {
+    "runtime_overhead_p95_ms": 10,
+    "ci_build_time_increase_max_minutes": 2,
+    "bundle_size_increase_max_kb_gzipped": 25
+  },
+  "contrast_requirements": {
+    "text_small_min": 4.5,
+    "text_large_min": 3.0,
+    "ui_components_min": 3.0,
+    "focus_indicator_min": 3.0,
+    "notes": "WCAG 2.1 SC 1.4.3 (Contrast Minimum), 1.4.11 (Non-text Contrast)"
+  },
+  "ver_mas_expander": {
+    "description": "Expandable content regions (accordions, read-more links)",
+    "tap_target_min_px": 44,
+    "label_min_font_size_px": 16,
+    "icon_size_min_px": 24,
+    "focus_indicator_required": true
+  },
+  "reach_zone_preferences": {
+    "phone_one_handed": {
+      "easy_reach_percent": 50,
+      "description": "Bottom half of screen; avoid top corners for critical actions"
+    },
+    "tablet_two_handed": {
+      "easy_reach_percent": 60,
+      "description": "Edges for thumb reach; center for index fingers"
+    }
+  },
+  "accessibility_requirements": {
+    "focus_visible": {
+      "required": true,
+      "min_contrast": 3.0,
+      "wcag_sc": "2.4.7, 2.4.11"
+    },
+    "no_color_only": {
+      "required": true,
+      "wcag_sc": "1.4.1"
+    },
+    "keyboard_navigable": {
+      "required": true,
+      "wcag_sc": "2.1.1"
+    },
+    "touch_target_size": {
+      "required": true,
+      "wcag_sc": "2.5.8 (AAA)"
+    },
+    "no_motion_only": {
+      "required": true,
+      "wcag_sc": "2.5.4"
+    },
+    "zoom_resilient": {
+      "required": true,
+      "zoom_percent": 200,
+      "wcag_sc": "1.4.4"
+    },
+    "timeout_warnings": {
+      "required": true,
+      "wcag_sc": "2.2.1"
+    }
+  },
+  "notes": {
+    "pixel_units": "All 'px' values refer to CSS pixels (device-independent pixels), not physical display pixels. On high-DPI displays (Retina, etc.), 1 CSS px = multiple physical pixels.",
+    "angular_sizing": "For glasses_microdisplay and ar_vr, angular size (degrees) is used instead of pixels because the physical distance between user and UI varies. Angular size ensures consistent visual and motor difficulty.",
+    "density_modes": "Ultra-compact mode requires invisible hit-slop padding to compensate for reduced visual spacing. Without hit-slop, ultra-compact is prohibited.",
+    "enforcement_override": "Individual surfaces can override enforcement thresholds via ADR. Use sparingly and with expiry date."
+  },
+  "references": {
+    "wcag_2_1": "https://www.w3.org/WAI/WCAG21/quickref/",
+    "wcag_2_2": "https://www.w3.org/WAI/WCAG22/quickref/",
+    "apple_hig": "https://developer.apple.com/design/human-interface-guidelines/",
+    "material_design_3": "https://m3.material.io/",
+    "legibility_best_practices": "Shneiderman et al., 'Designing the User Interface' (6th ed., 2016)"
+  }
+}
